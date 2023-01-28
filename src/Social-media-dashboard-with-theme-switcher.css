@@ -1,0 +1,384 @@
+/*
+ Name: Social media dashboard with theme switcher.
+ Description: A Frontendmentor.io coding challenge.
+ Author: Federico Borzani
+ Author URL:  https://github.com/eserengo/
+*/
+
+/* --- TAGS --- */
+
+:root {
+
+  /* --- FONTS --- */
+
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  --Bold: 700;
+
+  /* --- COLOR PALETTE --- */
+
+  --Lime-Green: hsl(163, 72%, 41%);
+  --Bright-Red: hsl(356, 69%, 56%);
+
+  --Facebook: hsl(208, 92%, 53%);
+  --Twitter: hsl(203, 89%, 53%);
+  --Instagram: linear-gradient(45deg, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+  --YouTube: hsl(348, 97%, 39%);
+
+  /*#### Dark Theme*/
+
+  --DARK-Toggle: linear-gradient(to right, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+  --DARK-Very-Dark-Blue-BG: hsl(230, 17%, 14%);
+  --DARK-Very-Dark-Blue-Top-BG-Pattern: hsl(232, 19%, 15%);
+  --DARK-Dark-Desaturated-Blue-Card-BG: hsl(228, 28%, 20%);
+  --DARK-Desaturated-Blue-Text: hsl(228, 34%, 66%);
+  --DARK-White-Text: hsl(0, 0%, 100%);
+
+  /*#### Light Theme*/
+
+  --LIGHT-White-BG: hsl(0, 0%, 100%);
+  --LIGHT-Very-Pale-Blue-Top-BG-Pattern: hsl(225, 100%, 98%);
+  --LIGHT-Light-Grayish-Blue-Card-BG: hsl(227, 47%, 96%);
+  --LIGHT-Dark-Grayish-Blue-Text: hsl(228, 12%, 44%);
+  --LIGHT-Very-Dark-Blue-Text: hsl(230, 17%, 14%);
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 0%;
+  margin: 0%;
+  user-select: none;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 200px;
+  margin: 0% auto;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+/* --- GENERAL CLASSES --- */
+
+.hidden {
+  display: none;
+}
+
+.selectable:hover {
+  cursor: pointer;
+  user-select: all;
+}
+
+.rel {
+  position: relative;
+}
+
+.abs {
+  position: absolute;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.flex-row.center,
+.flex-col.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.abs.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.up {
+  color: var(--Lime-Green);
+}
+
+.down {
+  color: var(--Bright-Red);
+}
+
+/* --- SPECIFIC CLASSES --- */
+
+.main {
+  background-color: var(--LIGHT-White-BG);
+  padding: 5%;
+}
+
+.header {
+  width: 100%;
+  height: 10rem;
+  background-color: var(--LIGHT-Very-Pale-Blue-Top-BG-Pattern);
+  border-radius: 0px 0px 16px 16px;
+}
+
+.header.dark {
+  background-color: var(--DARK-Very-Dark-Blue-Top-BG-Pattern);
+}
+
+.h1 {
+  color: var(--LIGHT-Very-Dark-Blue-Text);
+  font-weight: var(--Bold);
+  font-size: 150%;
+}
+
+.h1.dark {
+  color: var(--DARK-White-Text);
+}
+
+.header .para {
+  display: block;
+  padding-bottom: 10%;
+  border-bottom: 2px solid var(--LIGHT-Light-Grayish-Blue-Card-BG);
+}
+.header .para.dark {
+  border-color: var(--DARK-Dark-Desaturated-Blue-Card-BG);
+}
+
+.para {
+  font-size: 100%;
+  color: var(--LIGHT-Dark-Grayish-Blue-Text);
+  vertical-align: middle;
+}
+
+.para.dark {
+  color: var(--DARK-Desaturated-Blue-Text);
+}
+
+.mode {
+  font-size: 100%;
+  color: var(--LIGHT-Dark-Grayish-Blue-Text);
+  display: block;
+  margin-top: 5%;
+}
+
+.mode.dark {
+  color: var(--DARK-Desaturated-Blue-Text);
+}
+
+.toggle {
+  font-size: 24px;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: var(--DARK-Toggle);
+  transform: rotate(180deg);
+  vertical-align: middle;
+  padding: 0px 8px;
+}
+
+.main.dark {
+  background-color: var(--DARK-Very-Dark-Blue-BG);
+}
+
+.section-large {
+  gap: 24px;
+  padding: 5%;
+}
+
+.large-card {
+  padding: 48px;
+  background-color: var(--LIGHT-Light-Grayish-Blue-Card-BG);
+  border-radius: 8px;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 4%;
+}
+
+.large-card.dark {
+  background-color: var(--DARK-Dark-Desaturated-Blue-Card-BG);
+}
+
+.large-card.one {
+  background-image: linear-gradient(to right, var(--Facebook), var(--Facebook));
+}
+
+.large-card.two {  
+  background-image: linear-gradient(to right, var(--Facebook), var(--Facebook));
+}
+
+.large-card.three {
+  background-image: var(--Instagram);
+}
+
+.large-card.four {
+  background-image: linear-gradient(to right, var(--YouTube), var(--YouTube));
+}
+
+.facebook,
+.twitter,
+.instagram,
+.youtube {
+  font-size: 24px;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.facebook {
+  background-color: var(--Facebook);
+}
+
+.twitter {
+  background-color: var(--Twitter);
+}
+
+.youtube {
+  background-color: var(--YouTube);
+}
+
+.instagram {
+  background-image: var(--Instagram);
+}
+
+.num {
+  font-weight: var(--Bold);
+  color: var(--LIGHT-Very-Dark-Blue-Text);
+}
+
+.num.dark {
+  color: var(--DARK-White-Text);
+}
+
+.large-card .num {
+  font-size: 300%;
+  padding-top: 10%;
+}
+
+.large-card .uppercase {
+  padding-bottom: 10%;
+  font-size: 75%;
+  letter-spacing: 2px;
+}
+
+.h2 {
+  font-weight: var(--Bold);
+  font-size: 125%;
+  color: var(--LIGHT-Dark-Grayish-Blue-Text);
+  padding: 5% 0%;
+}
+
+.h2.dark {
+  color: var(--DARK-White-Text);
+}
+
+.section-small {
+  padding: 5%;
+  gap: 8px;
+}
+
+.small-card {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  padding: 24px;
+  background-color: var(--LIGHT-Light-Grayish-Blue-Card-BG);
+  border-radius: 8px;
+}
+
+.small-card.dark {
+  background-color: var(--DARK-Dark-Desaturated-Blue-Card-BG);
+}
+
+.small-card .num {
+  font-size: 175%;
+}
+
+.small-card .social {
+  text-align: right;
+}
+
+.small-card .balance {
+  text-align: right;
+  padding-top: 8px;
+}
+
+.attribution {
+  font-size: 75%;
+  text-align: center;
+}
+
+.large-card:hover,
+.small-card:hover {
+  opacity: 85%;
+  box-shadow: 0px 1px 8px var(--DARK-Very-Dark-Blue-BG);
+}
+
+.large-card.dark:hover,
+.small-card.dark:hover {
+  opacity: 85%;
+  box-shadow: 0px 1px 8px var(--LIGHT-White-BG);
+}
+
+/* --- MEDIA QUERIES --- */
+
+@media screen and (width > 375px) {
+  body {
+    min-width: 800px;
+  }
+  .header {
+    padding: 5%;
+  }
+  .header .para {
+    border-bottom: none;
+  }
+  .mode {
+    margin-top: -12.5%;
+  }
+  .main {
+    padding: 0%;
+  }
+  .section-large {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 23%);
+    grid-template-rows: 100%;
+    column-gap: 24px;
+  }
+  .large-card {
+    padding: 24px;
+  }
+  .h2 {
+    padding: 0% 5%;
+  }
+  .section-small {
+    display: grid;
+    grid-template-columns: repeat(4, 23%);
+    grid-template-rows: 46% 46%;
+    column-gap: 24px;
+    row-gap: 16px;
+  }
+  .para {
+    font-size: 85%;
+  }
+}
